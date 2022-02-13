@@ -10,6 +10,9 @@ define('DEFAULT_ERROR_PAGE', BASEDOMAIN . '/e404');
 define('DEFAULT_KICK_PAGE', DEFAULT_ERROR_PAGE);
 define('DEFAULT_VIEW_ASSETS_URL', BASEDOMAIN . '/public/assets');
 define('DEFAULT_VIEW_VENDOR_URL', BASEDOMAIN . '/public/vendor');
+define('TEMPLATE_SECTION_FULL', 'full');
+define('TEMPLATE_SECTION_OPEN', 'open');
+define('TEMPLATE_SECTION_CLOSE', 'close');
 
 /*
  * USER LEVEL

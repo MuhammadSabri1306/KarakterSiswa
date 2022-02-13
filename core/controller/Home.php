@@ -5,6 +5,7 @@
 class Home extends Controller
 {
 	function index(){
-		echo 'home/index';
+		$this->setVisibility(USER_LEVEL_UNKNOWN);
+		$this->view('home');
 	}
 }
