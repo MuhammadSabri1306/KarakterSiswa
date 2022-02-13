@@ -17,6 +17,7 @@ class MainTemplate
 		}elseif($appUser->getLevel() == USER_LEVEL_ADMIN){
 
 			return array(
+				array('url' => 'home', 'title' => 'Beranda'),
 				array('url' => 'siswa', 'title' => 'Data Siswa'),
 				array('url' => 'training', 'title' => 'Data Latih'),
 				array('url' => 'kuesioner', 'title' => 'Data Soal'),
@@ -71,15 +72,7 @@ class MainTemplate
 		<nav id="sidebar">
 			<ul class="list-unstyled menu-categories" id="accordionExample">
                 <li class="menu">
-                	<a class='menu-top-active' href="<?=BASEDOMAIN?>/home" class="dropdown-toggle">
-                        <span class="d-block">Menu</span>
-                    </a>
-                    <!-- <a class='menu-top-active' 
-                    href="index.php" data-active="true" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <span>Menu</span>
-                        </div>
-                    </a> -->
+                	<h3><b>Menu</b></h3>
                 </li><?php
 
 		$this->createMenu();
@@ -116,12 +109,14 @@ class MainTemplate
     <script src="<?=DEFAULT_VIEW_VENDOR_URL?>/apex/apexcharts.min.js"></script>
     <script src="<?=DEFAULT_VIEW_ASSETS_URL?>/js/dash_2.js"></script><?php
 
+    	}
+
     	if($type == TEMPLATE_SECTION_FULL || $type == TEMPLATE_SECTION_CLOSE){
 
 ?></body>
 </html><?php
 
 		}
-
 	}
+
 }

@@ -8,7 +8,6 @@ $template->header();
         <div class="col-md-12">
             <h4 class="page-head-line">Klasifikasi Karakteristik Kepribadian Siswa dengan Metode Naïve Bayes</h4>
         </div>
-
     </div>
     <div class="row">
         <div class="col-md-12">
