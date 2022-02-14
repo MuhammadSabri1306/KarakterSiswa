@@ -12,7 +12,10 @@ class MainTemplate
 		$appUser = new User();
 		if($appUser->getLevel() == USER_LEVEL_UNKNOWN){
 
-			return array(array('url' => 'login.php', 'title' => 'Masuk'));
+			return array(
+				array('url' => 'home', 'title' => 'Beranda', 'icon' => 'fas fa-home'),
+				array('url' => 'login', 'title' => 'Masuk', 'icon' => 'fas fa-key')
+			);
 
 		}elseif($appUser->getLevel() == USER_LEVEL_ADMIN){
 
@@ -34,10 +37,10 @@ class MainTemplate
 		for($i=0; $i<count($menu); $i++){
 
 				?><li class="menu">
-					<a class="<?=($i != $this->activeNav) ? 'dropdown-toggle' : ''?>" href="<?=BASEDOMAIN?>/<?=$menu[0]['url']?>" aria-expanded="false" class="dropdown-toggle">
-						<div class="">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-							<span><?=$menu[0]['title']?></span>
+					<a href="<?=BASEDOMAIN?>/<?=$menu[$i]['url']?>" class="dropdown-toggle"<?=($i == $this->activeNav) ? ' data-active="true"' : ''?> aria-expanded="false">
+						<div>
+							<i class="<?=$menu[$i]['icon']?>"></i>
+							<span><?=$menu[$i]['title']?></span>
 						</div>
 					</a>
 				</li><?php
@@ -57,10 +60,11 @@ class MainTemplate
     <title><?=$this->title?></title>
     <link rel="icon" type="image/x-icon" href="<?=DEFAULT_VIEW_ASSETS_URL?>/<?=$this->favicon?>"/>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="<?=DEFAULT_VIEW_VENDOR_URL?>/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?=DEFAULT_VIEW_ASSETS_URL?>/css/plugins.css?v=2" rel="stylesheet" type="text/css" />
-    <link href="<?=DEFAULT_VIEW_VENDOR_URL?>/apex/apexcharts.css" rel="stylesheet" type="text/css">
-    <link href="<?=DEFAULT_VIEW_ASSETS_URL?>/css/dash_2.css" rel="stylesheet" type="text/css" /><?php
+    <link href="<?=DEFAULT_VIEW_VENDOR_URL?>/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="<?=DEFAULT_VIEW_VENDOR_URL?>/fontawesome/css/all.min.css" rel="stylesheet"/>
+    <link href="<?=DEFAULT_VIEW_ASSETS_URL?>/css/plugins.css?v=2" rel="stylesheet"/>
+    <link href="<?=DEFAULT_VIEW_VENDOR_URL?>/apex/apexcharts.css" rel="stylesheet">
+    <link href="<?=DEFAULT_VIEW_ASSETS_URL?>/css/dash_2.css" rel="stylesheet"/><?php
 
     	}
 
@@ -72,7 +76,7 @@ class MainTemplate
 		<nav id="sidebar">
 			<ul class="list-unstyled menu-categories" id="accordionExample">
                 <li class="menu">
-                	<h3><b>Menu</b></h3>
+                	<h4 class="mb-4"><b>Navigation</b></h4>
                 </li><?php
 
 		$this->createMenu();
@@ -94,7 +98,7 @@ class MainTemplate
 		?></div>
 		<div class="footer-wrapper justify-content-center">
 			<div class="footer-section">
-				<p class="mt-5">Copyright © 2022 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+				<p class="mt-5 font-weight-bold">Copyright &copy; 2022 Universitas Dipa Makassar.</p>
 			</div>
 		</div>
 	</div>
@@ -102,6 +106,7 @@ class MainTemplate
     <script src="<?=DEFAULT_VIEW_VENDOR_URL?>/jquery/jquery-3.1.1.min.js"></script>
     <script src="<?=DEFAULT_VIEW_VENDOR_URL?>/popper/popper.min.js"></script>
     <script src="<?=DEFAULT_VIEW_VENDOR_URL?>/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?=DEFAULT_VIEW_VENDOR_URL?>/fontawesome/js/all.min.js"></script>
     <script src="<?=DEFAULT_VIEW_VENDOR_URL?>/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="<?=DEFAULT_VIEW_ASSETS_URL?>/js/app.js"></script>
     <script> $(document).ready(function() { App.init(); }); </script>

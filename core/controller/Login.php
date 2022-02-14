@@ -4,11 +4,15 @@
  */
 class Login extends Controller
 {
-	function index(){
-		echo 'login/index';
+	function index($failed = ''){
+		$this->setVisibility(USER_LEVEL_UNKNOWN);
+
+		$failed = ($failed == 'failed');
+		$this->view('login', ['failed' => $failed]);
 	}
 
-	function verify(){
-		echo 'login/verify';
+	function auth(){
+		$this->setVisibility(USER_LEVEL_UNKNOWN);
+		$this->getService('authorizeLogin');
 	}
 }
