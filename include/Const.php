@@ -13,6 +13,7 @@ define('DEFAULT_VIEW_VENDOR_URL', BASEDOMAIN . '/public/vendor');
 define('TEMPLATE_SECTION_FULL', 'full');
 define('TEMPLATE_SECTION_OPEN', 'open');
 define('TEMPLATE_SECTION_CLOSE', 'close');
+define('PRODUCTION_MODE', false);
 
 /*
  * USER LEVEL

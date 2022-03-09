@@ -20,13 +20,23 @@ class MainTemplate
 		}elseif($appUser->getLevel() == USER_LEVEL_ADMIN){
 
 			return array(
-				array('url' => 'home', 'title' => 'Beranda'),
-				array('url' => 'siswa', 'title' => 'Data Siswa'),
-				array('url' => 'training', 'title' => 'Data Latih'),
-				array('url' => 'kuesioner', 'title' => 'Data Soal'),
-				array('url' => 'akurasi', 'title' => 'Uji Akurasi'),
-				array('url' => 'klasifikasi', 'title' => 'Hasil Klasifikasi'),
-				array('url' => 'logout', 'title' => 'Keluar')
+				array('url' => 'home', 'title' => 'Beranda', 'icon' => 'fas fa-home'),
+				array('url' => 'siswa', 'title' => 'Data Siswa', 'icon' => 'fas fa-child'),
+				array('url' => 'training', 'title' => 'Data Latih', 'icon' => 'fas fa-lightbulb'),
+				array('url' => 'kuesioner', 'title' => 'Kuesioner', 'icon' => 'fas fa-question-circle'),
+				array('url' => 'akurasi', 'title' => 'Uji Akurasi', 'icon' => 'fas fa-child'),
+				array('url' => 'hasil', 'title' => 'Hasil Klasifikasi', 'icon' => 'fas fa-bookmark'),
+				array('url' => 'logout', 'title' => 'Keluar', 'icon' => 'fas fa-power-off')
+			);
+
+		}elseif($appUser->getLevel() == USER_LEVEL_SISWA){
+
+			return array(
+				array('url' => 'home', 'title' => 'Beranda', 'icon' => 'fas fa-home'),
+				array('url' => 'siswa/own', 'title' => 'Data Siswa', 'icon' => 'fas fa-child'),
+				array('url' => 'kuesioner/analyze', 'title' => 'Kuesioner', 'icon' => 'fas fa-question-circle'),
+				array('url' => 'hasil/own', 'title' => 'Hasil Klasifikasi', 'icon' => 'fas fa-bookmark'),
+				array('url' => 'logout', 'title' => 'Keluar', 'icon' => 'fas fa-power-off')
 			);
 
 		}

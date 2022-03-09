@@ -29,22 +29,25 @@ class Database
 	}
 
 	function query($query){
-		$this->stm =$this->db->prepare($query);
+		$this->stm = $this->db->prepare($query);
 	}
 
 	function bind($param, $value, $type = null){
 		if(is_null($type)){
 			$type = is_int($value) ? PDO::PARAM_INT
-				: is_bool($value) ? PDO::PARAM_BOOL
-				: is_null($value) ? PDO::PARAM_NULL
-				: PDO::PARAM_STR;
+				: (is_bool($value) ? PDO::PARAM_BOOL
+				: (is_null($value) ? PDO::PARAM_NULL
+				: PDO::PARAM_STR));
 		}
 
 		$this->stm->bindValue($param, $value, $type);
 	}
 
 	function execute(){
-		$this->stm->execute();
+		if($this->stm->execute()){
+			return true;
+		}
+		return false;
 	}
 
 	function resultSet(){
@@ -55,6 +58,21 @@ class Database
 	function resultRow(){
 		$this->execute();
 		return $this->stm->fetch(PDO::FETCH_ASSOC);
+	}
+
+	function numRows(){
+		/*$this->execute();
+		return $this->stm->fetchColumn();*/
+
+		return count($this->resultSet());
+	}
+
+	function lastInsertId(){
+		return $this->db->lastInsertId();
+	}
+
+	function debugDumpParams(){
+		return $this->stm->debugDumpParams();
 	}
 }
 
