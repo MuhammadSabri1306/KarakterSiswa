@@ -6,7 +6,7 @@ function getPost($name){
 	return strip_tags(trim($_POST[$name]));
 }
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query('INSERT INTO users (nama, username, password, level) VALUES (:nama, :username, :password, 2)');
 
 $database->bind('nama', getPost('nama'));

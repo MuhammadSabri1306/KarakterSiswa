@@ -33,9 +33,9 @@ class MainTemplate
 
 			return array(
 				array('url' => 'home', 'title' => 'Beranda', 'icon' => 'fas fa-home'),
-				array('url' => 'siswa/own', 'title' => 'Data Siswa', 'icon' => 'fas fa-child'),
+				array('url' => 'siswa/my', 'title' => 'Data Siswa', 'icon' => 'fas fa-child'),
 				array('url' => 'kuesioner/analyze', 'title' => 'Kuesioner', 'icon' => 'fas fa-question-circle'),
-				array('url' => 'hasil/own', 'title' => 'Hasil Klasifikasi', 'icon' => 'fas fa-bookmark'),
+				array('url' => 'hasil/my', 'title' => 'Hasil Klasifikasi', 'icon' => 'fas fa-bookmark'),
 				array('url' => 'logout', 'title' => 'Keluar', 'icon' => 'fas fa-power-off')
 			);
 

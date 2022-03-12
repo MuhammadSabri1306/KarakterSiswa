@@ -40,4 +40,12 @@ class Test extends UnitTest
 	function find_table(){
 		$this->run('find_array_table');
 	}
+
+	function uji_akurasi(){
+		$this->run('uji_akurasi');
+	}
+
+	function returned_by_constructor(){
+		$this->run('returned_by_constructor');
+	}
 }

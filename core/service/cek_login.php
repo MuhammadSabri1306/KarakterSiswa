@@ -5,7 +5,7 @@ isset($_POST['username'], $_POST['password'], $_POST['login']) or exit('Failed t
 $user = strip_tags(trim($_POST['username']));
 $pass = strip_tags(trim($_POST['password']));
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query("SELECT * FROM users WHERE username=:user");
 $database->bind('user', $user);
 

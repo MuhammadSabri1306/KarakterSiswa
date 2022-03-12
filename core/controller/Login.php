@@ -11,6 +11,8 @@ class Login extends Controller
 
 	function auth(){
 		$this->setVisibility(USER_LEVEL_UNKNOWN);
+
+		$this->use('Database');
 		$this->getService('cek_login');
 	}
 

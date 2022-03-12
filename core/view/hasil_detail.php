@@ -51,7 +51,10 @@ if($jumlah > 0){
 
 }else{
 
-				?><h3 class="text-center">Anda belum mengisi kuesioner..</h3><?php
+				?><h3 class="text-center">Anda belum mengisi kuesioner..</h3>
+				<p class="text-center">
+					<a href="<?=BASEDOMAIN?>/kuesioner/analyze" class="btn btn-warning">Isi kuesioner anda disini</a>
+				</p><?php
 
 }
 

@@ -47,11 +47,10 @@ class Controller
 		require BASEPATH . $service;
 	}
 
-	protected function call($library, $params = []){
+	protected function use($library){
 		$library = "/lib/$library.php";
 		file_exists(BASEPATH . $library) or exit("Error to get Library's file on path: $library");
 
 		require_once BASEPATH . $library;
-		return $called;
 	}
 }

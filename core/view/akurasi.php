@@ -10,7 +10,7 @@ $template->header();
 			<div class="d-flex align-items-center mb-4">
 				<h4 class="page-head-line">Uji Akurasi</h4>
 				<button type="button" class="btn btn-outline-primary mx-3 p-2" data-toggle="collapse" data-target="#settingCollapseForm" aria-expanded="false" aria-controls="settingCollapseForm"><i class="fas fa-cog"></i></button>
-				<a href="<?=BASEDOMAIN?>/akurasi/uji" class="btn btn-outline-success"><i class="fas fa-check"></i> Uji Akurasi</a>
+				<a href="<?=BASEDOMAIN?>/akurasi/run" class="btn btn-outline-success"><i class="fas fa-check"></i> Uji Akurasi</a>
 			</div>
 		</div>
 	</div>

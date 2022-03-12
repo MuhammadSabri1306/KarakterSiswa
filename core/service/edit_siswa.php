@@ -7,7 +7,7 @@ function getPost($name){
 }
 
 $id = $_POST['edit'];
-$database = $this->call('Database');
+$database = new Database();
 $database->query('UPDATE users SET nama=:nama, username=:username WHERE id_user=:id');
 
 $database->bind('nama', getPost('nama'));

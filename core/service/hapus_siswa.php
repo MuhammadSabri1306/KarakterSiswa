@@ -1,6 +1,6 @@
 <?php
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query('DELETE FROM users WHERE id_user=:id');
 $database->bind('id', $params['id']);
 $delete = $database->execute();

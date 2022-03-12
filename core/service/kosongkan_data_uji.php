@@ -1,6 +1,6 @@
 <?php
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query('TRUNCATE TABLE data_uji');
 $empty = $database->execute();
 

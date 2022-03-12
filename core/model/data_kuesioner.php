@@ -1,6 +1,6 @@
 <?php
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query('SELECT * FROM data_soal');
 
 $data = array('jumlah' => $database->numRows());

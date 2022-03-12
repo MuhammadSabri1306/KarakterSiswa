@@ -76,7 +76,7 @@ class NaiveBayes
 		return $findIndex;
 	}
 
-	function setAttribute($attributeName, $category = []){
+	function setCategoryOfAttribute($attributeName, $category = []){
 		if(!is_array($category)){
 			$this->error('$category must be array!');
 		}
@@ -248,7 +248,6 @@ class NaiveBayes
 			}
 			
 			$result[$class] = number_format($result[$class], 20);
-			// var_dump($result[$class]);
 		}
 
 		return $result;
@@ -260,6 +259,11 @@ class NaiveBayes
 
 		return ucfirst($result);
 	}
+
+	public static function init($params){
+		$valid = array_key_exists('classes', $params) && array_key_exists('classField', $params) && array_key_exists('trainingSet', $params) && array_key_exists('params', $params);
+		$valid OR exit('NaiveBayes what called need $params["classes", "classField", "trainingSet", "params"] to pass to constructor!');
+
+		return new NaiveBayes($params['classes'], $params['classField'], $params['trainingSet'], $params['params']);
+	}
 }
-
-

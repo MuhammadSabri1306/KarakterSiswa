@@ -1,6 +1,6 @@
 <?php
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query('SELECT siswa.*, usr.username FROM data_siswa siswa, users usr WHERE siswa.`id_user` = usr.`id_user`');
 
 $data = array('jumlah' => $database->numRows());

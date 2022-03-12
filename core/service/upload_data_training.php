@@ -2,8 +2,8 @@
 
 isset($_FILES['file_data_latih']) or exit('Failed to pass POST variable');
 
-$database = $this->call('Database');
-$excel = $this->call('ExcelReader', array('filepath' => $_FILES['file_data_latih']['tmp_name']));
+$database = new Database();
+$excel = ExcelReader::init($_FILES['file_data_kuesioner']['tmp_name']);
 
 $row = $excel->rowcount($sheet_index = 0);
 // $column = $excel->colcount($sheet_index = 0);

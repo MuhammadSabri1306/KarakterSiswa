@@ -1,6 +1,6 @@
 <?php
 
-$database = $this->call('Database');
+$database = new Database();
 $database->query('SELECT siswa.id FROM data_siswa siswa, data_hasil_klasifikasi hasil WHERE siswa.`id`=hasil.`id_siswa` AND siswa.`id_user`=:id');
 $database->bind('id', $params['id']);
 $isExists = ($database->numRows() > 0);
