@@ -31,12 +31,18 @@ $template->header(TEMPLATE_SECTION_CLOSE);
 ?><div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h4 class="page-head-line">Kuesioner</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="container-fluid pt-4"><?php
+			<div class="container-fluid pt-4">
+				<div class="row justify-content-center mb-5">
+					<div class="col-md-auto d-flex">
+						<div class="m-auto">
+							<h2 class="text-center">Catatan.</h2>
+							<p class="text-center lead">Ayo isi kuesioner di bawah.<br>Tidak ada jawaban yang benar dan salah,<br>kamu hanya perlu memilih yang sesuai dengan<br>keadaan pribadimu.</p>
+						</div>
+					</div>
+					<div class="col-md-3 d-flex">
+						<img src="<?=DEFAULT_VIEW_ASSETS_URL?>/img/siswasatu.png" class="img-fluid m-auto">
+					</div>
+				</div><?php
 
 if(count($soal) > 0){
 
@@ -46,7 +52,7 @@ if(count($soal) > 0){
 		$no++;
 
 					?><div class="row mx-4 mb-4">
-						<div class="col-12"><b class="lead">No. <?=$no?></b></div>
+						<div class="col-12"><b class="lead text-white">Pertanyaan <?=$no?></b> Saya adalah seorang yang ...</div>
 						<div class="col-6 question-choices top-left-choice bg-success p-4">
 							<div class="form-check">
 								<input type="radio" name="soal[<?=$s['id']?>]" class="form-check-input" value="A" required="">

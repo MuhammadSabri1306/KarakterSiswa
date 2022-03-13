@@ -20,7 +20,7 @@ $template->header();
 					<form method="post" action="<?=BASEDOMAIN?>/siswa/add">
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="text" class="form-control"  name="nama" id="nama" placeholder="Nama">
+								<input type="text" class="form-control"  name="nama" id="nama" placeholder="Nama" value="<?=isset($dataFromFormUsers['nama']) ? $dataFromFormUsers['nama'] : ''?>">
 								<p class="text-danger" id="error-nama"></p>
 							</div>
 						</div>
@@ -32,7 +32,7 @@ $template->header();
 						</div>
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="text" class="form-control"  name="user_name" id="user_name" placeholder="Username">
+								<input type="text" class="form-control"  name="user_name" id="user_name" placeholder="Username" value="<?=isset($dataFromFormUsers['username']) ? $dataFromFormUsers['username'] : ''?>">
 								<p class="text-danger" id="error-user_name"></p>
 							</div>
 						</div>
@@ -130,4 +130,14 @@ if($jumlah > 0){
 	</div>
 </div><?php
 
-$template->footer();
+$template->footer(TEMPLATE_SECTION_OPEN);
+
+if(isset($dataFromFormUsers) && !is_null($dataFromFormUsers)){
+
+?><script type="text/javascript">
+	$('#inputCollapseForm').collapse('show');
+</script><?php
+
+}
+
+$template->footer(TEMPLATE_SECTION_CLOSE);

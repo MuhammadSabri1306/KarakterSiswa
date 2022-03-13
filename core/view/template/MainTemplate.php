@@ -26,6 +26,7 @@ class MainTemplate
 				array('url' => 'kuesioner', 'title' => 'Kuesioner', 'icon' => 'fas fa-question-circle'),
 				array('url' => 'akurasi', 'title' => 'Uji Akurasi', 'icon' => 'fas fa-child'),
 				array('url' => 'hasil', 'title' => 'Hasil Klasifikasi', 'icon' => 'fas fa-bookmark'),
+				array('url' => 'users', 'title' => 'Data Pengguna', 'icon' => 'fas fa-user'),
 				array('url' => 'logout', 'title' => 'Keluar', 'icon' => 'fas fa-power-off')
 			);
 

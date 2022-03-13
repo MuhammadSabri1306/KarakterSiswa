@@ -16,3 +16,16 @@ for($i=0; $i<count($data['siswa']); $i++){
 		$data['siswa'][$i]['telp_orgtua'] = substr_replace($data['siswa'][$i]['telp_orgtua'], '', 0, 1);
 	}
 }
+
+// data dari form Users ketika menambah users Siswa: nama, username
+$data['dataFromFormUsers'] = null;
+if(isset($_SESSION['dataUsersToDataSiswa']) && !is_null($_SESSION['dataUsersToDataSiswa'])){
+
+	if(is_array($_SESSION['dataUsersToDataSiswa'])){
+		$data['dataFromFormUsers'] = $_SESSION['dataUsersToDataSiswa'];
+	}
+	
+	$_SESSION['dataUsersToDataSiswa'] = null;
+	unset($_SESSION['dataUsersToDataSiswa']);
+
+}

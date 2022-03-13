@@ -11,7 +11,7 @@ $template->header();
     </div>
     <div class="row">
         <div class="col-md-12 col-lg-6 mx-auto">
-            <img width="" height="auto" src="images/siswa.png" class="img-fluid">
+            <img width="" height="auto" src="<?=DEFAULT_VIEW_ASSETS_URL?>/img/siswa.png" class="img-fluid">
         </div>
     </div>
 </div><?php
