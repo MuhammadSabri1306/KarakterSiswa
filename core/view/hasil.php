@@ -1,7 +1,8 @@
 <?php
 
+$appUser = new User();
 $template = $this->getTemplate('MainTemplate');
-$template->activeNav = 5;
+$template->activeNav = ($appUser->getLevel() == USER_LEVEL_ADMIN ? 5 : 2);
 $template->header();
 
 ?><div class="container">
@@ -18,7 +19,7 @@ if($jumlah > 0){
 
 			?><table id="table-siswa" class="table style-3 table-hover">
 				<thead>
-					<tr><th>No</th><th>Nama</th><th>Jenis Kelamin</th><th>Usia</th><th>Sekolah</th><th>Jawaban A</th><th>Jawaban B</th><th>Jawaban C</th><th>Jawaban D</th><th>Kelas Hasil</th></tr>
+					<tr><th>No</th><th>Nama</th><th>Jenis Kelamin</th><th>Usia</th><th>Sekolah</th><th>Jumlah A</th><th>Jumlah B</th><th>Jumlah C</th><th>Jumlah D</th><th>Kelas Hasil</th><th></th></tr>
 				</thead>
 				<tbody><?php
 	$no = 0;
@@ -35,7 +36,8 @@ if($jumlah > 0){
 						<td><?=$h['jawaban_b']?></td>
 						<td><?=$h['jawaban_c']?></td>
 						<td><?=$h['jawaban_d']?></td>
-						<td><?=$h['kelas_hasil']?></td><?php
+						<td><a href="#" class="btn btn-block btn-sm btn-primary"><?=$h['kelas_hasil']?></a></td>
+						<td><a href="https://wa.me/<?=$h['telp_orgtua']?>" class="btn btn-block btn-sm btn-success font-weight-bold" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a></td><?php
 
 	}
 

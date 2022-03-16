@@ -8,6 +8,8 @@ class Siswa extends Controller
 		$this->setVisibility(USER_LEVEL_ADMIN, USER_LEVEL_GURU);
 
 		$this->use('Database');
+		$this->use('whatsappNumberFormat');
+
 		$data = $this->model('data_siswa');
 		$this->view('siswa', $data);
 	}
@@ -28,6 +30,15 @@ class Siswa extends Controller
 
 		$data = $this->model('detail_siswa', ['id' => $appUser->getId()]);
 		$this->view('siswa_my_detail', $data);
+	}
+
+	function upload(){
+		$this->setVisibility(USER_LEVEL_ADMIN, USER_LEVEL_GURU);
+
+		$this->use('Database');
+		$this->use('ExcelReader');
+
+		$this->getService('upload_data_siswa');
 	}
 
 	function add(){

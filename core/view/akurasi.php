@@ -7,16 +7,17 @@ $template->header();
 ?><div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="d-flex align-items-center mb-4">
-				<h4 class="page-head-line">Uji Akurasi</h4>
-				<button type="button" class="btn btn-outline-primary mx-3 p-2" data-toggle="collapse" data-target="#settingCollapseForm" aria-expanded="false" aria-controls="settingCollapseForm"><i class="fas fa-cog"></i></button>
-				<a href="<?=BASEDOMAIN?>/akurasi/run" class="btn btn-outline-success"><i class="fas fa-check"></i> Uji Akurasi</a>
-			</div>
+			<h4 class="page-head-line">Uji Akurasi</h4>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div id="settingCollapseForm" class="collapse"><div class="border border-dark rounded p-4 mb-4">
+			<div class="d-flex ml-3 mb-4">
+				<a href="<?=BASEDOMAIN?>/akurasi/run" class="btn btn-outline-info mr-3"><i class="fas fa-search-plus"></i> Uji Akurasi</a>
+				<i class="border-left border-dark pl-1 ml-1"></i>
+				<button type="button" class="btn btn-outline-success ml-3 p-2" data-toggle="collapse" data-target="#importCollapseForm" aria-expanded="false" aria-controls="importCollapseForm"><i class="fas fa-file-import"></i> Import dari MS.Excel</button>
+			</div>
+			<div id="importCollapseForm" class="collapse"><div class="border border-dark rounded p-4 mb-4">
 				<form method="post" enctype="multipart/form-data" action="<?=BASEDOMAIN?>/akurasi/upload">
                     <div class="form-group">
                         <div class="input-group">
@@ -25,9 +26,10 @@ $template->header();
                         </div>
                     </div>
                     <div class="d-flex px-4">
-                    	<button type="reset" class="btn btn-secondary mr-3" data-toggle="collapse" data-target="#settingCollapseForm" aria-expanded="false" aria-controls="settingCollapseForm">Cancel</button>
-                        <button type="submit" name="submit" class="btn btn-success">Upload Data</button>
-                        <a href="<?=BASEDOMAIN?>/akurasi/empty" onclick="return confirmDelete()" class="btn btn-danger ml-auto"><i class="fas fa-trash-alt"></i> Hapus Semua</a>
+                    	<button type="reset" class="btn btn-secondary mr-3" data-toggle="collapse" data-target="#importCollapseForm" aria-expanded="false" aria-controls="importCollapseForm"><i class="fas fa-reply"></i> Batal</button>
+                        <button type="submit" name="submit" class="btn btn-success mr-5"><i class="fas fa-file-upload"></i> Upload Data</button>
+                        <a href="javascript:window.open('<?=BASEDOMAIN?>/download/excel_template_data_uji','_self').close();" class="btn btn-info mr-5"><i class="fas fa-file-download"></i> Download Excel Template</a>
+                        <a href="<?=BASEDOMAIN?>/akurasi/empty" onclick="return confirmDelete()" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Semua</a>
                     </div>
                 </form>
 			</div></div>

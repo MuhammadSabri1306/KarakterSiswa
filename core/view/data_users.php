@@ -113,12 +113,12 @@ if($jmlGuru > 0){
 
 }else{
 
-				?><h5 class="mx-4 mb-0">Belum ada pengguna Guru..</h5>
-			</div><?php
+				?><h5 class="mx-4 mb-0">Belum ada pengguna Guru..</h5><?php
 
 }
 
-		?></div>
+			?></div>
+		</div>
 		<div class="col-lg-6">
 			<div class="border rounded p-4 mt-5">
 				<h5 class="mb-4">Siswa</h5>

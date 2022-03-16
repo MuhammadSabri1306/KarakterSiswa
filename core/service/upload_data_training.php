@@ -25,7 +25,7 @@ for($i=2; $i<=$row; $i++){
         $database->bind('d', $excel->val($i, 9));
         $database->bind('kelas', $excel->val($i, 10));
 
-        $insert = $database->execute();
+        $insertItem = $database->execute();
         if($errorRow < 0 && !$insertItem){
         	$errorRow = $i;
         }

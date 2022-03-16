@@ -8,6 +8,8 @@ class Hasil extends Controller
 		$this->setVisibility(USER_LEVEL_ADMIN, USER_LEVEL_GURU);
 
 		$this->use('Database');
+		$this->use('whatsappNumberFormat');
+		
 		$data = $this->model('data_hasil');
 		$this->view('hasil', $data);
 	}

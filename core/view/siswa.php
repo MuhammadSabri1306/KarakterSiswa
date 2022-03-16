@@ -12,11 +12,29 @@ $template->header();
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div id="inputCollapseAccordion" class="container-fluid mb-5">
-				<div id="inputCollapseButton" class="collapse show" data-parent="#inputCollapseAccordion">
-					<button type="button" class="btn btn-lg btn-block btn-outline-primary" data-toggle="collapse" data-target="#inputCollapseForm" aria-expanded="false" aria-controls="inputCollapseForm">Tambah Data Siswa</button>
-				</div>
-				<div id="inputCollapseForm" class="collapse" data-parent="#inputCollapseAccordion"><div class="border border-dark rounded p-4">
+			<div class="d-flex ml-3 mb-4">
+				<button type="button" class="btn btn-lg btn-outline-primary mr-2" data-toggle="collapse" data-target="#addCollapseForm" aria-expanded="false" aria-controls="addCollapseForm"><i class="fas fa-plus"></i> Tambah Data Siswa</button>
+				<i class="border-left border-dark pl-1 ml-1"></i>
+				<button type="button" class="btn btn-outline-success ml-2 p-2" data-toggle="collapse" data-target="#importCollapseForm" aria-expanded="false" aria-controls="importCollapseForm"><i class="fas fa-file-import"></i> Import dari MS.Excel</button>
+			</div>
+			<div id="collapseAccordion" class="container-fluid mb-5">
+				<div id="importCollapseForm" class="collapse" data-parent="#collapseAccordion"><div class="border border-dark rounded p-4 mb-4">
+	                <form method="post" enctype="multipart/form-data" action="<?=BASEDOMAIN?>/siswa/upload">
+	                    <div class="form-group">
+	                        <div class="input-group">
+	                            <div class="input-group-prepend"><label class="input-group-text">Import data excel</label></div>
+	                            <input name="file_data_siswa" type="file" class="form-control">
+	                        </div>
+	                    </div>
+	                    <div class="d-flex px-4">
+	                    	<button type="reset" class="btn btn-secondary mr-3" data-toggle="collapse" data-target="#importCollapseForm" aria-expanded="false" aria-controls="importCollapseForm"><i class="fas fa-reply"></i> Batal</button>
+	                        <button type="submit" name="submit" class="btn btn-success mr-5"><i class="fas fa-file-upload"></i> Upload Data</button>
+	                        <a href="javascript:window.open('<?=BASEDOMAIN?>/download/excel_template_data_siswa','_self').close();" class="btn btn-info mr-5"><i class="fas fa-file-download"></i> Download Excel Template</a>
+	                        <a href="<?=BASEDOMAIN?>/kuesioner/empty" onclick="return confirmDelete()" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Semua</a>
+	                    </div>
+	                </form>
+				</div></div>
+				<div id="addCollapseForm" class="collapse" data-parent="#collapseAccordion"><div class="border border-dark rounded p-4">
 					<form method="post" action="<?=BASEDOMAIN?>/siswa/add">
 						<div class="form-row mb-4">
 							<div class="col">
@@ -85,8 +103,8 @@ $template->header();
 							</div>
 						</div>
 						<div class="flex justify-content-center px-5">
-							<button type="reset" class="btn btn-secondary mr-3" data-toggle="collapse" data-target="#inputCollapseButton" aria-expanded="true" aria-controls="inputCollapseButton">Cancel</button>
-							<button type="submit" name="add" class="btn btn-success">Save</button>
+							<button type="reset" class="btn btn-secondary mr-3" data-toggle="collapse" data-target="#addCollapseForm" aria-expanded="false" aria-controls="addCollapseForm"><i class="fas fa-reply"></i> Batal</button>
+							<button type="submit" name="add" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
 						</div>
 					</form>
 				</div></div>
@@ -135,7 +153,7 @@ $template->footer(TEMPLATE_SECTION_OPEN);
 if(isset($dataFromFormUsers) && !is_null($dataFromFormUsers)){
 
 ?><script type="text/javascript">
-	$('#inputCollapseForm').collapse('show');
+	$('#addCollapseForm').collapse('show');
 </script><?php
 
 }

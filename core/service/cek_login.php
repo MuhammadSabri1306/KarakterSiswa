@@ -10,6 +10,7 @@ $database->query("SELECT * FROM users WHERE username=:user");
 $database->bind('user', $user);
 
 $dbResult = $database->resultRow();
+var_dump($pass, $dbResult['password']);
 if(password_verify($pass, $dbResult['password'])){
 	$appUser = new User();
 	$appUser->setId($dbResult['id_user']);

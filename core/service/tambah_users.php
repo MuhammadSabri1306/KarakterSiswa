@@ -11,8 +11,8 @@ if(getPost('jenis') == USER_LEVEL_GURU){
 	$database = new Database();
 	$database->query('INSERT INTO users (nama, username, password, level) VALUES (:nama, :user, :pass, :level)');
 	$database->bind('nama', getPost('nama'));
-	$database->bind('username', getPost('user_name'));
-	$database->bind('pass', password_hash(getPost('nama'), PASSWORD_DEFAULT));
+	$database->bind('user', getPost('user_name'));
+	$database->bind('pass', password_hash(getPost('user_name'), PASSWORD_DEFAULT));
 	$database->bind('level', USER_LEVEL_GURU);
 	$insert = $database->execute();
 

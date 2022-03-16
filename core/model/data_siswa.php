@@ -9,12 +9,7 @@ if($data['jumlah'] > 0){
 }
 
 for($i=0; $i<count($data['siswa']); $i++){
-	if(substr($data['siswa'][$i]['telp_orgtua'], 0, 1) == '0'){
-		$data['siswa'][$i]['telp_orgtua'] = substr_replace($data['siswa'][$i]['telp_orgtua'], '62', 0, 1);
-	}
-	if(substr($data['siswa'][$i]['telp_orgtua'], 0, 1) == '+'){
-		$data['siswa'][$i]['telp_orgtua'] = substr_replace($data['siswa'][$i]['telp_orgtua'], '', 0, 1);
-	}
+	$data['siswa'][$i]['telp_orgtua'] = whatsappNumberFormat($data['siswa'][$i]['telp_orgtua']);
 }
 
 // data dari form Users ketika menambah users Siswa: nama, username

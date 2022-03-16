@@ -3,7 +3,7 @@
 isset($_FILES['file_data_uji']) or exit('Failed to pass POST variable');
 
 $database = new Database();
-$excel = ExcelReader::init($_FILES['file_data_kuesioner']['tmp_name']);
+$excel = ExcelReader::init($_FILES['file_data_uji']['tmp_name']);
 
 $row = $excel->rowcount($sheet_index = 0);
 // $column = $excel->colcount($sheet_index = 0);
@@ -13,7 +13,7 @@ $errorRow = -1;
 for($i=2; $i<=$row; $i++){
     if(!empty($excel->val($i, 2))){
 
-        $database->query('INSERT INTO data_latih (nama, jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli) VALUES (:nama, :jkel, :usia, :sekolah, :a, :b, :c, :d, :kelas)');
+        $database->query('INSERT INTO data_uji (nama, jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli) VALUES (:nama, :jkel, :usia, :sekolah, :a, :b, :c, :d, :kelas)');
 
         $database->bind('nama', $excel->val($i, 2));
         $database->bind('jkel', $excel->val($i, 3));

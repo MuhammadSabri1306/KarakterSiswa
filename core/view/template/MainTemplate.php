@@ -41,6 +41,17 @@ class MainTemplate
 			);
 
 		}
+
+		elseif($appUser->getLevel() == USER_LEVEL_GURU){
+
+			return array(
+				array('url' => 'home', 'title' => 'Beranda', 'icon' => 'fas fa-home'),
+				array('url' => 'siswa', 'title' => 'Data Siswa', 'icon' => 'fas fa-child'),
+				array('url' => 'hasil', 'title' => 'Hasil Klasifikasi', 'icon' => 'fas fa-bookmark'),
+				array('url' => 'logout', 'title' => 'Keluar', 'icon' => 'fas fa-power-off')
+			);
+
+		}
 	}
 
 	private function createMenu(){

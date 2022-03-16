@@ -31,6 +31,13 @@ class Users extends Controller
 		$this->setVisibility(USER_LEVEL_ADMIN);
 
 		$this->use('Database');
-		$this->getService('edit_users');
+		$this->getService('edit_users', ['id' => $id]);
+	}
+
+	function del($id){
+		$this->setVisibility(USER_LEVEL_ADMIN);
+
+		$this->use('Database');
+		$this->getService('hapus_users', ['id' => $id]);
 	}
 }

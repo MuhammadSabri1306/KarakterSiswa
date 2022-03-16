@@ -48,4 +48,16 @@ class Test extends UnitTest
 	function returned_by_constructor(){
 		$this->run('returned_by_constructor');
 	}
+
+	function create_post(){
+		$this->run('create_post');
+	}
+
+	function create_passhash(){
+		$this->run('create_passhash');
+	}
+
+	function download_file(){
+		$this->run('download_file');
+	}
 }
