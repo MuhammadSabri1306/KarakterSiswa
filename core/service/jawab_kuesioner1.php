@@ -80,23 +80,6 @@ $save = $database->execute();
 
 $save OR exit('Error MySQL in jawab_kuesioner.php on line ' . strval(__LINE__ - 3) . ', query: INSERT INTO data_hasil_klasifikasi (id_siswa, ....');
 
-// --------------- START INSERT data ke tabel data_uji ---------------
-$database->query('INSERT INTO data_uji (id_siswa, nama, jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli) VALUES (:id_siswa, :nama, :jenis_kelamin, :usia, :sekolah, :jawaban_a, :jawaban_b, :jawaban_c, :jawaban_d, :kelas_asli)');
-$database->bind('id_siswa', $idTabelSiswa);
-$database->bind('nama', $userApp->getName());
-$database->bind('jenis_kelamin', $nbResult['jenis_kelamin']);
-$database->bind('usia', $nbResult['usia']);
-$database->bind('sekolah', $nbResult['sekolah']);
-$database->bind('jawaban_a', $nbResult['jawaban_a']);
-$database->bind('jawaban_b', $nbResult['jawaban_b']);
-$database->bind('jawaban_c', $nbResult['jawaban_c']);
-$database->bind('jawaban_d', $nbResult['jawaban_d']);
-$database->bind('kelas_asli', $nbResult['kelas_hasil']);
-$save = $database->execute();
-// --------------- END INSERT data ke tabel data_uji ---------------
-
-$save OR exit('Error MySQL in jawab_kuesioner.php on line ' . strval(__LINE__ - 3) . ', query: INSERT INTO data_uji (nama, ....');
-
 ?><script type="text/javascript">
 	alert("Berhasil disimpan!");
 	document.location.href = "<?=BASEDOMAIN?>/hasil/my/";

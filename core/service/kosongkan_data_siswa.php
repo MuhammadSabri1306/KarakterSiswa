@@ -11,11 +11,6 @@ $empty = $database->execute();
 
 $empty OR exit('Failed to TRUNCATE TABLE data_hasil_klasifikasi ON kosongkan_data_siswa.php');
 
-$database->query('TRUNCATE TABLE data_uji');
-$empty = $database->execute();
-
-$empty OR exit('Failed to TRUNCATE TABLE data_uji ON kosongkan_data_siswa.php');
-
 $database->query('TRUNCATE TABLE jawaban_kuisioner');
 $empty = $database->execute();
 

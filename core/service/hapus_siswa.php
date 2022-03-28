@@ -24,17 +24,6 @@ if(count($tblJawaban) > 0){
 	$delete OR exit('Failed to delete from table jawaban_kuisioner in hapus_siswa.php on line ' . strval(__LINE__ - 2));
 }
 
-$database->query('SELECT id FROM data_uji WHERE id_siswa=:id_siswa');
-$database->bind('id_siswa', $params['id']);
-$tblUji = $database->resultRow();
-if(count($tblUji) > 0){
-	$database->query('DELETE FROM data_uji WHERE id=:id');
-	$database->bind('id', $tblUji['id']);
-	$delete = $database->execute();
-
-	$delete OR exit('Failed to delete from table data_uji in hapus_siswa.php on line ' . strval(__LINE__ - 2));
-}
-
 ?><script type="text/javascript">
 	alert("Berhasil dihapus!");
 	document.location.href = "<?=BASEDOMAIN?>/siswa/";

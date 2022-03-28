@@ -30,13 +30,6 @@ $update = $database->execute();
 
 $update OR exit('Failed to update table data_siswa in edit_siswa.php on line ' . strval(__LINE__ - 2));
 
-$database->query('UPDATE data_uji INNER JOIN data_siswa ON data_siswa.`id`=data_uji.`id_siswa` SET data_uji.`nama`=:nama WHERE data_siswa.`id_user`=:id');
-$database->bind('nama', getPost('nama'));
-$database->bind('id', $id);
-$update = $database->execute();
-
-$update OR exit('Failed to update table data_uji in edit_siswa.php on line ' . strval(__LINE__ - 2));
-
 ?><script type="text/javascript">
 	alert("Berhasil disimpan!");
 	document.location.href = "<?=BASEDOMAIN?>/siswa/details/<?=$id?>";

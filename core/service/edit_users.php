@@ -42,13 +42,6 @@ if($isSiswa){
 	$update = $database->execute();
 
 	$update OR exit('Failed to update table data_siswa at edit_users.php, from line ' . strval(__LINE__ - 2));
-
-	$database->query('UPDATE data_uji INNER JOIN data_siswa ON data_siswa.`id`=data_uji.`id_siswa` SET data_uji.`nama`=:nama WHERE data_siswa.`id_user`=:id');
-	$database->bind('nama', $nama);
-	$database->bind('id', $id);
-	$update = $database->execute();
-
-	$update OR exit('Failed to update table data_uji at edit_users.php, from line ' . strval(__LINE__ - 2));
 }
 
 ?><script type="text/javascript">

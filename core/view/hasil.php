@@ -4,7 +4,7 @@ $appUser = new User();
 $modalKarakter = $this->getComponent('ModalDeskripsiKarakter');
 
 $template = $this->getTemplate('MainTemplate');
-$template->activeNav = ($appUser->getLevel() == USER_LEVEL_ADMIN ? 5 : 2);
+$template->activeNav = ($appUser->getLevel() == USER_LEVEL_ADMIN ? 4 : 2);
 $template->header();
 
 ?><div class="container">

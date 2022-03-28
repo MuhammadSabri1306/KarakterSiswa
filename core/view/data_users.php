@@ -1,7 +1,7 @@
 <?php
 
 $template = $this->getTemplate('MainTemplate');
-$template->activeNav = 6;
+$template->activeNav = 5;
 $template->header(TEMPLATE_SECTION_OPEN);
 
 ?><style type="text/css">
