@@ -37,7 +37,7 @@ if($jumlah > 0){
 
 			?><table id="table-siswa" class="table style-3 table-hover">
 				<thead>
-					<tr><th>No</th><th>Pilihan A</th><th>Pilihan B</th><th>Pilihan C</th><th>Pilihan D</th></tr>
+					<tr><th>No</th><th>Sifat Dasar</th><th>Tipe Karakter</th><th>Kategori</th><th>Keterangan</th></tr>
 				</thead>
 				<tbody><?php
 	$no = 0;
@@ -46,10 +46,10 @@ if($jumlah > 0){
 
 					?><tr>
 						<td><?=$no?></td>
-						<td><?=$q['pilihan_a']?></td>
-						<td><?=$q['pilihan_b']?></td>
-						<td><?=$q['pilihan_c']?></td>
-						<td><?=$q['pilihan_d']?></td><?php
+						<td><?=$q['keyword']?></td>
+						<td><?=$q['tipe_karakter']?></td>
+						<td><?=$q['kategori']?></td>
+						<td><?=$q['keterangan']?></td><?php
 
 	}
 
@@ -70,7 +70,7 @@ $template->footer(TEMPLATE_SECTION_OPEN);
 
 ?><script type="text/javascript">	
 function confirmDelete(){
-    return confirm("Semua data kuesioner akan dihapus. Lanjutkan?");
+    return confirm("Semua data latih akan dihapus. Lanjutkan?");
 }
 </script><?php
 

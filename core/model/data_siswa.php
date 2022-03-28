@@ -6,10 +6,10 @@ $database->query('SELECT siswa.*, usr.username FROM data_siswa siswa, users usr 
 $data = array('jumlah' => $database->numRows());
 if($data['jumlah'] > 0){
 	$data['siswa'] = $database->resultSet();
-}
 
-for($i=0; $i<count($data['siswa']); $i++){
-	$data['siswa'][$i]['telp_orgtua'] = whatsappNumberFormat($data['siswa'][$i]['telp_orgtua']);
+	for($i=0; $i<count($data['siswa']); $i++){
+		$data['siswa'][$i]['telp_orgtua'] = whatsappNumberFormat($data['siswa'][$i]['telp_orgtua']);
+	}
 }
 
 // data dari form Users ketika menambah users Siswa: nama, username

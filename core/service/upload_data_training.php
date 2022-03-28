@@ -3,10 +3,9 @@
 isset($_FILES['file_data_latih']) or exit('Failed to pass POST variable');
 
 $database = new Database();
-$excel = ExcelReader::init($_FILES['file_data_kuesioner']['tmp_name']);
+$excel = ExcelReader::init($_FILES['file_data_latih']['tmp_name']);
 
 $row = $excel->rowcount($sheet_index = 0);
-// $column = $excel->colcount($sheet_index = 0);
 $errorRow = -1;
 
 //import data excel dari baris kedua, karena baris pertama adalah nama kolom

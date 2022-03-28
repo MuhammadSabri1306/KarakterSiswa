@@ -14,34 +14,26 @@ $database->bind('username', getPost('user_name'));
 $database->bind('password', password_hash(getPost('user_name'), PASSWORD_DEFAULT));
 $insert = $database->execute();
 
-if($insert){
-	$lasInsertedId = $database->lastInsertId();
-	$database->query('INSERT INTO data_siswa (nama_siswa, nis, jenis_kelamin, usia, sekolah, id_user, nama_orgtua, telp_orgtua) VALUES (:nama, :nis, :jkel, :usia, :sekolah, :id, :nama_orgtua, :telp_orgtua)');
+$insert OR exit('Failed to INSERT INTO table users in tambah_siswa.php on line ' . strval(__LINE__ - 2));
 
-	$database->bind('nama', getPost('nama'));
-	$database->bind('nis', getPost('nis'));
-	$database->bind('jkel', getPost('jenis_kelamin'));
-	$database->bind('usia', getPost('usia'));
-	$database->bind('sekolah', getPost('sekolah'));
-	$database->bind('id', $lasInsertedId);
-	$database->bind('nama_orgtua', getPost('nama_orgtua'));
-	$database->bind('telp_orgtua', getPost('telp_orgtua'));
+$lasInsertedId = $database->lastInsertId();
+$database->query('INSERT INTO data_siswa (nama_siswa, nis, jenis_kelamin, usia, sekolah, id_user, nama_orgtua, telp_orgtua) VALUES (:nama, :nis, :jkel, :usia, :sekolah, :id, :nama_orgtua, :telp_orgtua)');
 
-	$insert = $database->execute();
-	// $database->debugDumpParams();
-}
+$database->bind('nama', getPost('nama'));
+$database->bind('nis', getPost('nis'));
+$database->bind('jkel', getPost('jenis_kelamin'));
+$database->bind('usia', getPost('usia'));
+$database->bind('sekolah', getPost('sekolah'));
+$database->bind('id', $lasInsertedId);
+$database->bind('nama_orgtua', getPost('nama_orgtua'));
+$database->bind('telp_orgtua', getPost('telp_orgtua'));
 
-if($insert){
+$insert = $database->execute();
+// $database->debugDumpParams();
 
-	?><script type="text/javascript">
-		alert("Berhasil disimpan!");
-		document.location.href = "<?=BASEDOMAIN?>/siswa/";
-	</script><?php
+$insert OR exit('Failed to INSERT INTO table data_siswa in tambah_siswa.php on line ' . strval(__LINE__ - 2));
 
-}else{
-
-	?><script type="text/javascript">
-		alert("Gagal disimpan!");
-	</script><?php
-
-}
+?><script type="text/javascript">
+	alert("Berhasil disimpan!");
+	document.location.href = "<?=BASEDOMAIN?>/siswa/";
+</script>

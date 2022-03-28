@@ -40,6 +40,14 @@ class Controller
 		return new $template;
 	}
 
+	protected function getComponent($component){
+		$file = "/core/view/component/$component.php";
+		file_exists(BASEPATH . $file) or exit("Error to get Template's file on path: $file");
+
+		include BASEPATH . $file;
+		return new $component;
+	}
+
 	protected function getService($service, $params = []){
 		$service = "/core/service/$service.php";
 		file_exists(BASEPATH . $service) or exit("Error to get Service's file on path: $service");

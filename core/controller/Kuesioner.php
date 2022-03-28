@@ -9,7 +9,7 @@ class Kuesioner extends Controller
 
 		$this->use('Database');
 		$data = $this->model('data_kuesioner');
-		$this->view('kuesioner', $data);
+		$this->view('kuesioner1', $data);
 	}
 
 	function upload(){
@@ -18,7 +18,7 @@ class Kuesioner extends Controller
 		$this->use('Database');
 		$this->use('ExcelReader');
 
-		$this->getService('upload_kuesioner');
+		$this->getService('upload_kuesioner1');
 	}
 
 	function empty(){
@@ -34,8 +34,8 @@ class Kuesioner extends Controller
 		$this->use('Database');
 		$appUser = new User();
 
-		$data = $this->model('form_kuesioner', ['id' => $appUser->getId()]);
-		$this->view('form_kuesioner', $data);
+		$data = $this->model('form_kuesioner2', ['id' => $appUser->getId()]);
+		$this->view('form_kuesioner3', $data);
 	}
 
 	function answer(){
@@ -44,6 +44,6 @@ class Kuesioner extends Controller
 		$this->use('Database');
 		$this->use('NaiveBayes');
 
-		$this->getService('jawab_kuesioner');
+		$this->getService('jawab_kuesioner1');
 	}
 }

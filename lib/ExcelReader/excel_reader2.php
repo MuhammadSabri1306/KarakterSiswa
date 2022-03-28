@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+
 /**
  * A class for reading Microsoft Excel (97/2003) Spreadsheets.
  *
@@ -95,7 +95,7 @@ function v($data,$pos) {
 
 class OLERead {
 	var $data = '';
-	function OLERead(){	}
+	// function OLERead(){	}
 
 	function read($sFileName){
 		// check if file exist and is readable (Darko Miljanovic)
@@ -913,7 +913,7 @@ class Spreadsheet_Excel_Reader {
 	 *
 	 * Some basic initialisation
 	 */
-	function Spreadsheet_Excel_Reader($file='',$store_extended_info=true,$outputEncoding='') {
+	function __construct($file='',$store_extended_info=true,$outputEncoding='') {
 		$this->_ole = new OLERead();
 		$this->setUTFEncoder('iconv');
 		if ($outputEncoding != '') { 

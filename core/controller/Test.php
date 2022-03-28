@@ -60,4 +60,8 @@ class Test extends UnitTest
 	function download_file(){
 		$this->run('download_file');
 	}
+
+	function set_id(){
+		$this->run('set_id');
+	}
 }

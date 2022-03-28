@@ -61,4 +61,11 @@ class Siswa extends Controller
 		$this->use('Database');
 		$this->getService('hapus_siswa', ['id' => $id]);
 	}
+
+	function empty(){
+		$this->setVisibility(USER_LEVEL_ADMIN);
+
+		$this->use('Database');
+		$this->getService('kosongkan_data_siswa');
+	}
 }

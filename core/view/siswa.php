@@ -1,5 +1,7 @@
 <?php
 
+$appUser = new User();
+
 $template = $this->getTemplate('MainTemplate');
 $template->activeNav = 1;
 $template->header();
@@ -23,34 +25,40 @@ $template->header();
 	                    <div class="form-group">
 	                        <div class="input-group">
 	                            <div class="input-group-prepend"><label class="input-group-text">Import data excel</label></div>
-	                            <input name="file_data_siswa" type="file" class="form-control">
+	                            <input name="file_data_siswa" type="file" class="form-control" required>
 	                        </div>
 	                    </div>
 	                    <div class="d-flex px-4">
 	                    	<button type="reset" class="btn btn-secondary mr-3" data-toggle="collapse" data-target="#importCollapseForm" aria-expanded="false" aria-controls="importCollapseForm"><i class="fas fa-reply"></i> Batal</button>
 	                        <button type="submit" name="submit" class="btn btn-success mr-5"><i class="fas fa-file-upload"></i> Upload Data</button>
-	                        <a href="javascript:window.open('<?=BASEDOMAIN?>/download/excel_template_data_siswa','_self').close();" class="btn btn-info mr-5"><i class="fas fa-file-download"></i> Download Excel Template</a>
-	                        <a href="<?=BASEDOMAIN?>/kuesioner/empty" onclick="return confirmDelete()" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Semua</a>
-	                    </div>
+	                        <a href="javascript:window.open('<?=BASEDOMAIN?>/download/excel_template_data_siswa','_self').close();" class="btn btn-info mr-5"><i class="fas fa-file-download"></i> Download Excel Template</a><?php
+
+if($appUser->getLevel() == USER_LEVEL_ADMIN){
+
+	                        ?><a href="<?=BASEDOMAIN?>/siswa/empty" onclick="return confirmDelete()" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus Semua</a><?php
+	                    
+}
+
+	                    ?></div>
 	                </form>
 				</div></div>
 				<div id="addCollapseForm" class="collapse" data-parent="#collapseAccordion"><div class="border border-dark rounded p-4">
 					<form method="post" action="<?=BASEDOMAIN?>/siswa/add">
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="text" class="form-control"  name="nama" id="nama" placeholder="Nama" value="<?=isset($dataFromFormUsers['nama']) ? $dataFromFormUsers['nama'] : ''?>">
+								<input type="text" class="form-control"  name="nama" id="nama" placeholder="Nama" value="<?=isset($dataFromFormUsers['nama']) ? $dataFromFormUsers['nama'] : ''?>" required>
 								<p class="text-danger" id="error-nama"></p>
 							</div>
 						</div>
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="text" class="form-control"  name="nis" id="nis" placeholder="NIS">
+								<input type="text" class="form-control"  name="nis" id="nis" placeholder="NIS" required>
 								<p class="text-danger" id="error-nis"></p>
 							</div>
 						</div>
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="text" class="form-control"  name="user_name" id="user_name" placeholder="Username" value="<?=isset($dataFromFormUsers['username']) ? $dataFromFormUsers['username'] : ''?>">
+								<input type="text" class="form-control"  name="user_name" id="user_name" placeholder="Username" value="<?=isset($dataFromFormUsers['username']) ? $dataFromFormUsers['username'] : ''?>" required>
 								<p class="text-danger" id="error-user_name"></p>
 							</div>
 						</div>
@@ -60,18 +68,18 @@ $template->header();
 							</div>
 							<div class="d-flex align-items-stretch">
 								<div class="form-check form-check-inline ml-3">
-									<input name="jenis_kelamin" type="radio" value="L" class="form-check-input" required="">
+									<input name="jenis_kelamin" type="radio" value="L" class="form-check-input" required>
 									<label class="form-check-label">Laki-laki</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input name="jenis_kelamin" type="radio" value="P" class="form-check-input" required="">
+									<input name="jenis_kelamin" type="radio" value="P" class="form-check-input" required>
 									<label class="form-check-label">Perempuan</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="number" class="form-control"  name="usia" id="usia" placeholder="Umur">
+								<input type="number" class="form-control"  name="usia" id="usia" placeholder="Umur" required>
 								<p class="text-danger" id="error-usia"></p>
 							</div>
 						</div>
@@ -92,13 +100,13 @@ $template->header();
 						</div>
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="text" class="form-control"  name="nama_orgtua" id="nama_orgtua" placeholder="Nama Orang Tua/Wali">
+								<input type="text" class="form-control"  name="nama_orgtua" id="nama_orgtua" placeholder="Nama Orang Tua/Wali" required>
 								<p class="text-danger" id="error-nama_orgtua"></p>
 							</div>
 						</div>
 						<div class="form-row mb-4">
 							<div class="col">
-								<input type="telp" class="form-control"  name="telp_orgtua" id="nama_orgtua" placeholder="No. Telepon/Whatsapp Orang Tua/Wali">
+								<input type="telp" class="form-control"  name="telp_orgtua" id="nama_orgtua" placeholder="No. Telepon/Whatsapp Orang Tua/Wali" required>
 								<p class="text-danger" id="error-telp_orgtua"></p>
 							</div>
 						</div>
@@ -157,5 +165,11 @@ if(isset($dataFromFormUsers) && !is_null($dataFromFormUsers)){
 </script><?php
 
 }
+
+?><script type="text/javascript">
+	function confirmDelete(){
+		return confirm("Semua data siswa akan dihapus. Lanjutkan?");
+	}
+</script><?php
 
 $template->footer(TEMPLATE_SECTION_CLOSE);

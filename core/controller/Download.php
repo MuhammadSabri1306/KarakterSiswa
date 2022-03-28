@@ -22,7 +22,7 @@ class Download extends Controller
 		$this->setVisibility(USER_LEVEL_ADMIN);
 
 		$this->use('DownloadFileRequest');
-		$this->getService('download_excel_template', ['filename' => 'TEMPLATE - Soal Kuesioner.xls']);
+		$this->getService('download_excel_template', ['filename' => 'TEMPLATE - Soal Kuesioner Revisi.xls']);
 	}
 
 	function excel_template_data_uji(){

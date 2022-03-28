@@ -2,14 +2,26 @@
 
 $database = new Database();
 
+// --------------- START setup Class Field Naive Bayes dari tabel data_uji ---------------
+$naiveBayesParams = array('classField' => 'kelas_asli');
+// --------------- END setup Class Field Naive Bayes dari tabel data_uji ---------------
+
+// --------------- START setup Training Set Naive Bayes ---------------
+// --------------- START setup Training Set Naive Bayes dari tabel data_latih ---------------
+$database->query('SELECT jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli FROM data_latih');
+$naiveBayesParams['trainingSet'] = $database->resultSet();
+// --------------- END setup Training Set Naive Bayes dari tabel data_latih ---------------
+
+// --------------- START setup Training Set Naive Bayes dari tabel data_uji ---------------
 $database->query('SELECT * FROM data_uji');
 $dataUji = $database->resultSet();
 
-$naiveBayesParams = array('classField' => 'kelas_asli');
+$naiveBayesParams['trainingSet'] = array_merge($naiveBayesParams['trainingSet'], array_map(function(row){
+	unset($row['id'], $row['id_siswa'], $row['nama'] ,$row['kelas_hasil'] ,$row['nilai_sanguin'] ,$row['nilai_koleris'] ,$row['nilai_melankolis'] ,$row['nilai_plegmatis']);
+	return $row;
+}, $dataUji));
 
-// --------------- START setup Training Set Naive Bayes dari tabel data_uji ---------------
-$naiveBayesParams['trainingSet'] = array();
-for($i=0; $i<count($dataUji); $i++){
+/*for($i=0; $i<count($dataUji); $i++){
 	$temp = array(
 		'jenis_kelamin' => $dataUji[$i]['jenis_kelamin'],
 		'usia' => $dataUji[$i]['usia'],
@@ -22,8 +34,9 @@ for($i=0; $i<count($dataUji); $i++){
 	);
 
 	array_push($naiveBayesParams['trainingSet'], $temp);
-}
+}*/
 // --------------- END setup Training Set Naive Bayes dari tabel data_uji ---------------
+// --------------- START setup Training Set Naive Bayes ---------------
 
 // --------------- START setup Kelas Naive Bayes ---------------
 $naiveBayesParams['classes'] = ['Sanguin', 'Koleris', 'Melankolis', 'Plegmatis'];

@@ -16,20 +16,12 @@ if(getPost('jenis') == USER_LEVEL_GURU){
 	$database->bind('level', USER_LEVEL_GURU);
 	$insert = $database->execute();
 
-	if($insert){
+	$insert OR exit('Failed to INSERT INTO table users in tambah_users.php on line ' . strval(__LINE__ - 2));
 
-		?><script type="text/javascript">
-			alert("Berhasil disimpan!");
-			document.location.href = "<?=BASEDOMAIN?>/users/";
-		</script><?php
-
-	}else{
-
-		?><script type="text/javascript">
-			alert("Gagal disimpan!");
-		</script><?php
-
-	}
+	?><script type="text/javascript">
+		alert("Berhasil disimpan!");
+		document.location.href = "<?=BASEDOMAIN?>/users/";
+	</script><?php
 
 }else{
 

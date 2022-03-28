@@ -1,6 +1,9 @@
 <?php
 /**
- * 
+ * PHP Class of Naive Bayes Classifier
+ * @source https://github.com/MuhammadSabri1306/NaiveBayes
+ * @author Muhammad Sabri <muhammadsabri1306@gmail.com>
+ *
  */
 class NaiveBayes
 {
@@ -10,10 +13,21 @@ class NaiveBayes
 	private $params = array();
 	private $classField = '';
 
-	private function error($message){
-		exit('NaiveBayes validation says: ' . $message);
-	}
-
+	/**
+	 * @param Array $classes
+	 * @param String $classField -column key is used as Class on Training Set
+	 * @param (Multidimensional) Array $trainingSet
+	 * @param (Associative) Array $params -Parameters to get the Result Class
+	 *
+	 * @example $classes = ['Play', No Play]
+	 * @example $classField = 'result'
+	 * @example $trainingSet = [
+	 *                            ['outlook'=>'sunny', 'temp'=>'hot', 'windy'=> 'yes', 'result'=>'Play']
+	 *                            ['outlook'=>'rainy', 'temp'=>'cold', 'windy'=> 'yes', 'result'=>'No Play']
+	 *                         ]
+	 * @example $params = ['outlook'=>'sunny', 'temp'=>'cold', 'windy'=> 'yes']
+	 * @example $naiveBayes = new NaiveBayes($classes, $classField, $trainingSet, $params)
+	 */
 	public function __construct($classes, $classField, $trainingSet, $params){
 		$this->validate($classes, $classField, $trainingSet, $params);
 
@@ -47,6 +61,20 @@ class NaiveBayes
 		}
 	}
 
+	/**
+	 * Print error message and stop the program
+	 */
+	private function error($message){
+		exit('NaiveBayes validation says: ' . $message);
+	}
+
+	/**
+	 * Validating the variables passed into Constructor
+	 * @param Array $classes
+	 * @param String $classField -column key is used as Class on Training Set
+	 * @param (Multidimensional) Array $trainingSet
+	 * @param Array $params -Parameters to get the Result Class
+	 */
 	private function validate($classes, $classField, $trainingSet, $params){
 		if(!is_array($classes) || !is_array($trainingSet) || !is_array($params)){
 			$this->error('$classes, $trainingSet, or $params is not Array!');
@@ -68,6 +96,13 @@ class NaiveBayes
 		}
 	}
 
+	/**
+	 * Get index of property $attribute by it's name
+	 * @param String $name
+	 * @return Integer
+	 * @example $this->findAttributeIndex('temp') => 1
+	 * @example $this->findAttributeIndex('sdasdsa') => -1
+	 */
 	private function findAttributeIndex($name){
 		$findIndex = array_search($name, array_column($this->attribute, 'name'));
 		if($findIndex === false){
@@ -76,7 +111,16 @@ class NaiveBayes
 		return $findIndex;
 	}
 
-	function setCategoryOfAttribute($attributeName, $category = []){
+	/**
+	 * Set category for categorial attribute
+	 * @param String $attributeName
+	 * @param Array $category
+	 *
+	 * @example $attributeName = 'outlook'
+	 * @example $category = ['sunny', 'rainy', 'cloudy']
+	 * @example $naiveBayes->setCategoryOfAttribute($attributeName, $category)
+	 */
+	function setCategoryOfAttribute($attributeName, $category){
 		if(!is_array($category)){
 			$this->error('$category must be array!');
 		}
@@ -93,6 +137,13 @@ class NaiveBayes
 		$this->attribute[$findIndex]['category'] = $category;
 	}
 
+	/**
+	 * Get data of training set by condition, like WHERE clause on MySQL 
+	 * @param (Associative) Array $attributeName
+	 * @return (Multidimensional) Array
+	 *
+	 * @example $filter = ['outlook' => 'rainy']
+	 */
 	function getTrainingSetByFilter($filter = ['field' => 'value']){
 		$trainingSet = $this->trainingSet;
 		$result = array();
@@ -113,10 +164,20 @@ class NaiveBayes
 		return $result;
 	}
 
+	/**
+	 * Get all parameters was set before
+	 * @return (Associative) Array
+	 */
 	public function getAllParams(){
 		return $this->params;
 	}
 
+	/**
+	 * Get X for numerical attribute depends on a Class
+	 * @param String $attribute
+	 * @param String $class
+	 * @return Double
+	 */
 	private function getX($attribute, $class){
 		$filter = array($this->classField => $class);
 		$dataOnClass = $this->getTrainingSetByFilter($filter);
@@ -131,6 +192,12 @@ class NaiveBayes
 		return $result;
 	}
 
+	/**
+	 * Get s^2 for numerical attribute depends on a Class
+	 * @param String $attribute
+	 * @param String $class
+	 * @return Double
+	 */
 	private function getS2($attribute, $class){
 		$x = $this->getX($attribute, $class);
 
@@ -152,9 +219,12 @@ class NaiveBayes
 		return $result;
 	}
 
-	/*
-	* ---------------- P(X|C) For Numeric Attribute
-	*/
+	/**
+	 * Get P(X|C) for numerical attribute depends on a Class
+	 * @param String $attribute
+	 * @param String $class
+	 * @return Double
+	 */
 	public function getProbabilityOfNumericConditionOnClass($attribute, $class){
 		$twoPhi = 2 * 3.14;
 		$s2 = $this->getS2($attribute, $class);
@@ -167,9 +237,12 @@ class NaiveBayes
 		return 1 / ($front * $behind);
 	}
 
-	/*
-	* ---------------- P(X|C) For Categorial Attribute
-	*/
+	/**
+	 * Get P(X|C) for categorial attribute depends on a Class
+	 * @param String $attribute
+	 * @param String $class
+	 * @return Double
+	 */
 	private function getProbabilityCategorialOfConditionOnClass($attribute, $class){
 		$filter = array(
 			$attribute => $this->params[$attribute],
@@ -184,9 +257,12 @@ class NaiveBayes
 		return $result;
 	}
 
-	/*
-	* ---------------- P(X|C)
-	*/
+	/**
+	 * Get P(X|C) on a Class by determine the attribute between categorial or numerical
+	 * @param String $attributeName
+	 * @param String $class
+	 * @return Double
+	 */
 	public function getProbabilityOfConditionOnClass($attributeName, $class){
 		if(!isset($this->params[$attributeName])){
 			$this->error($attributeName . ' is undefined Attribute!');
@@ -202,6 +278,11 @@ class NaiveBayes
 		return $result;
 	}
 
+	/**
+	 * Get P(X|C) for each attribute depends on a Class
+	 * @param String $class
+	 * @return Double
+	 */
 	public function getAllProbabilityOfConditionOnClass($class){
 		if(!in_array($class, $this->classes)){
 			$this->error('Undefined class->' . $class);
@@ -217,6 +298,11 @@ class NaiveBayes
 		return $result;
 	}
 
+	/**
+	 * Get P(C) for a Class
+	 * @param String $class
+	 * @return Double
+	 */
 	public function getProbabilityOfClass($class){
 		if(!in_array($class, $this->classes)){
 			$this->error('Undefined class->' . $class);
@@ -231,10 +317,12 @@ class NaiveBayes
 		return $numClass / $numAllData;
 	}
 
-	/*
-	 * ---------------- All P(C|X)
+	/**
+	 * Get P(C|X) / Result Probability for each Class
+	 * @param ? Integer $decimalDigit
+	 * @return Array
 	 */
-	public function getResultProbabilityOfClassOnCondition(){
+	public function getResultProbabilityOfClassOnCondition($decimalDigit = 20){
 		$result = array();
 		$attribute = array_column($this->attribute, 'name');
 
@@ -247,12 +335,16 @@ class NaiveBayes
 				$result[$class] *= $PXC;
 			}
 			
-			$result[$class] = number_format($result[$class], 20);
+			$result[$class] = number_format($result[$class], $decimalDigit);
 		}
 
 		return $result;
 	}
 
+	/**
+	 * Get Naive Bayes Result / largest Result Probability of each Class
+	 * @return String
+	 */
 	public function getClassificationResult(){
 		$allPCX = $this->getResultProbabilityOfClassOnCondition();
 		$result = array_search(max($allPCX), $allPCX);
@@ -260,6 +352,19 @@ class NaiveBayes
 		return ucfirst($result);
 	}
 
+	/**
+	 * Create object by Naive Bayes Class
+	 * @param (Associative) Array $params
+	 * @return Object (Naive Bayes)
+	 *
+	 * @example $params = [
+	 * @example   'classes' => $classes,
+	 * @example   'classField' => $classField,
+	 * @example   'trainingSet' => $trainingSet,
+	 * @example   'params' => $params
+	 * @example ]
+	 * @example $naiveBayes = NaiveBayes::init($params)
+	 */
 	public static function init($params){
 		$valid = array_key_exists('classes', $params) && array_key_exists('classField', $params) && array_key_exists('trainingSet', $params) && array_key_exists('params', $params);
 		$valid OR exit('NaiveBayes what called need $params["classes", "classField", "trainingSet", "params"] to pass to constructor!');
