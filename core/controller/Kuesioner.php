@@ -46,4 +46,18 @@ class Kuesioner extends Controller
 
 		$this->getService('jawab_kuesioner1');
 	}
+
+	function uplanswer($key = false){
+		$this->setVisibility(USER_LEVEL_ADMIN);
+		
+		if($key && $key == 'admin123'){
+			$this->use('Database');
+			$this->use('ExcelReader');
+			$this->use('NaiveBayes');
+
+			$this->getService('upload_jawaban_kuesioner');
+		}else{
+			var_dump('Enter the key to run this method!');
+		}
+	}
 }

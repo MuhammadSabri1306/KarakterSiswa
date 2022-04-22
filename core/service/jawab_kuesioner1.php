@@ -30,7 +30,7 @@ $save = $database->execute();
 $save OR exit('Error MySQL in jawab_kuesioner.php on line ' . strval(__LINE__ - 3) . ', query: ' . "INSERT INTO jawaban_kuisioner (id_user, id_siswa, id_soal, jawaban) VALUES $sqlValues");
 
 // --------------- START SELECT untuk Training Set Naive Bayes ---------------
-$database->query('SELECT jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli FROM data_latih UNION ALL SELECT jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli FROM data_uji');
+$database->query('SELECT jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli FROM data_latih');
 $trainingSet = $database->resultSet();
 // --------------- END SELECT untuk Training Set Naive Bayes ---------------
 

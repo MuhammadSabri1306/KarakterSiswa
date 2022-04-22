@@ -13,12 +13,12 @@ for($i=2; $i<=$row; $i++){
 
     	$nama = $excel->val($i, 2);
     	$nis = $excel->val($i, 3);
-    	$username = $excel->val($i, 3);
-    	$jenis_kelamin = $excel->val($i, 3);
-    	$usia = $excel->val($i, 3);
-    	$sekolah = $excel->val($i, 3);
-    	$nama_orgtua = $excel->val($i, 3);
-    	$telp_orgtua = $excel->val($i, 3);
+    	$username = $excel->val($i, 4);
+    	$jenis_kelamin = $excel->val($i, 5);
+    	$usia = $excel->val($i, 6);
+    	$sekolah = $excel->val($i, 7);
+    	$nama_orgtua = $excel->val($i, 8);
+    	$telp_orgtua = $excel->val($i, 9);
 
     	$database->query('INSERT INTO users (nama, username, password, level) VALUES (:nama, :username, :password, 2)');
 		$database->bind('nama', $nama);
