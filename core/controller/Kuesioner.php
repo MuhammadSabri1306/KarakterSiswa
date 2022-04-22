@@ -51,6 +51,10 @@ class Kuesioner extends Controller
 		$this->setVisibility(USER_LEVEL_ADMIN);
 		
 		if($key && $key == 'admin123'){
+			if(PRODUCTION_MODE){
+				exit('PRODUCTION MODE IS ON');
+			}
+			
 			$this->use('Database');
 			$this->use('ExcelReader');
 			$this->use('NaiveBayes');

@@ -3,6 +3,10 @@
 class UnitTest
 {
 	protected function run($unit){
+		if(PRODUCTION_MODE){
+			exit('PRODUCTION MODE IS ON');
+		}
+
 		$unit = "/unit-test/$unit.php";
 		file_exists(BASEPATH . $unit) or exit('Unit test cannot found: ' . $unit);
 
@@ -63,5 +67,9 @@ class Test extends UnitTest
 
 	function set_id(){
 		$this->run('set_id');
+	}
+
+	function change_nis(){
+		$this->run('changeNIS');
 	}
 }

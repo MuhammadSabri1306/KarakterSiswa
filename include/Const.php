@@ -13,7 +13,7 @@ define('DEFAULT_VIEW_VENDOR_URL', BASEDOMAIN . '/public/vendor');
 define('TEMPLATE_SECTION_FULL', 'full');
 define('TEMPLATE_SECTION_OPEN', 'open');
 define('TEMPLATE_SECTION_CLOSE', 'close');
-define('PRODUCTION_MODE', false);
+define('PRODUCTION_MODE', true);
 
 /*
  * USER LEVEL
@@ -31,5 +31,4 @@ define('USER_LEVEL_GURU', 3);
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-// define('DB_NAME', 'naivebayes');
 define('DB_NAME', 'k3s');
